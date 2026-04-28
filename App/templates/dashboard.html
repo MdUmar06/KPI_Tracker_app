@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #000, #1a1a1a);
+    color: #fff;
+    padding: 30px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.header {
+    background: linear-gradient(90deg, #ffcc00, #d7e868);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    transition: 0.3s ease;
+
+    border: 2px solid #ffcc00;
+
+    box-shadow: 
+        0 0 15px rgba(255, 204, 0, 0.4),
+        0 0 30px rgba(255, 204, 0, 0.3);
+}
+
+.header:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 120, 0.7);
+}
+
+.card {
+    background: #111;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+
+    border: 2px solid #ffcc00;
+
+    box-shadow: 
+        0 0 15px rgba(255, 204, 0, 0.4),
+        0 0 30px rgba(255, 204, 0, 0.3);
+}
+
+.card:hover {
+    box-shadow: 
+        0 0 25px rgba(255, 204, 0, 0.6),
+        0 0 50px rgba(255, 204, 0, 0.4);
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.info-box {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.4s;
+
+    border: 2px solid #ffcc00;
+
+    box-shadow: 
+        0 0 15px rgba(255, 204, 0, 0.4),
+        0 0 30px rgba(255, 204, 0, 0.3);
+}
+
+.info-box:hover {
+    box-shadow: 
+        0 0 25px rgba(255, 204, 0, 0.6),
+        0 0 50px rgba(255, 204, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.info-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    border: 1px solid #ffcc00;
+    box-shadow: 0 10px 25px rgba(255, 204, 0, 0.3);
+}
+
+.label {
+    font-size: 18px;
+    color: #f7f7f4;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* KPI */
+.kpi-section {
+    margin-top: 30px;
+}
+
+.kpi-title {
+    margin: 10px 0;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    height: 25px;
+    background: #333;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ffcc00, #ffaa00);
+    text-align: right;
+    padding-right: 10px;
+    line-height: 25px;
+    font-weight: bold;
+    color: #000;
+    width: 0%;
+    transition: width 1.5s ease;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Clean Circle Box */
+.circle {
+    width: 160px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #f9f7f7;
+
+    border: 2px solid #ffcc00;
+
+    box-shadow: 
+        0 0 15px rgba(255, 204, 0, 0.4),
+        0 0 30px rgba(244, 201, 31, 0.2);
+
+    transition: 0.3s ease;
+}
+
+.kpi-value{
+    margin-left: 50px;
+    padding-bottom: 0px;
+}
+
+
+
+/* LOGOUT */
+.logout {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.logout a {
+    padding: 12px 30px;
+    background: #ffcc00;
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.logout a:hover {
+    background: #000;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>Welcome in Our Sport Clubs {{ user[1] if user else "User" }}</h2>
+    </div>
+
+    <div class="card">
+
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="label">Employee ID</div>
+                <div class="value">{{ user[0] if user else "-" }}</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Email</div>
+                <div class="value">{{ user[2] if user else "-" }}</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Club</div>
+                <div class="value">{{ user[3] if user else "-" }}</div>
+            </div>
+        </div>
+
+        <!-- KPI -->
+        {% set kpi1 = (user[4] or 0)|int %}
+        {% set kpi2 = (user[5] or 0)|int %}
+        {% set kpi3 = (user[6] or 0)|int %}
+        {% set avg = (user[7] or 0)|int %}
+
+        <div class="kpi-section">
+
+            <div class="kpi-title">KPI 1</div>
+            <div class="progress-bar">
+                <div class="progress" data-width="{{ kpi1 }}%">{{ kpi1 }}%</div>
+            </div>
+
+            <div class="kpi-title">KPI 2</div>
+            <div class="progress-bar">
+                <div class="progress" data-width="{{ kpi2 }}%">{{ kpi2 }}%</div>
+            </div>
+
+            <div class="kpi-title">KPI 3</div>
+            <div class="progress-bar">
+                <div class="progress" data-width="{{ kpi3 }}%">{{ kpi3 }}%</div>
+            </div>
+
+        </div>
+
+        <!-- AVG CIRCLE -->
+       <div class="circle-container">
+    <div class="circle" style="--value: {{ avg|default(0)|int }}%;">
+        
+        <div class="kpi-content">
+            <div class="kpi-value">{{ avg|default(0)|int }}%</div>
+            <div class="kpi-title">Average Score</div>
+        </div>
+
+    </div>
+</div>
+
+        <div class="logout">
+            <a href="/logout">Logout</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+// Progress bars animation
+document.querySelectorAll('.progress').forEach(bar => {
+    let width = bar.getAttribute('data-width');
+    setTimeout(() => {
+        bar.style.width = width;
+    }, 300);
+});
+
+// Circle animation
+const circle = document.getElementById('circle');
+let value = parseInt(circle.getAttribute('data-value')) || 0;
+
+// Clamp between 0–100
+value = Math.max(0, Math.min(100, value));
+
+let current = 0;
+
+let interval = setInterval(() => {
+    if (current >= value) {
+        clearInterval(interval);
+    } else {
+        current++;
+        circle.style.background =
+            `conic-gradient(#ffcc00 ${current}%, #333 ${current}%)`;
+    }
+}, 15);
+</script>
+
+</body>
+</html>

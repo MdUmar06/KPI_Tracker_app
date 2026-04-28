@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Clubs Company - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ceda47, #ecf0dc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            height: 520px;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.4),
+                        0 10px 30px rgba(0,0,0,0.2);
+
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* LEFT PANEL */
+        .left {
+            width: 50%;
+            background: linear-gradient(135deg, #1e1e1e, #ffcc00);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 40px;
+            animation: slideLeft 1s ease;
+        }
+
+        .cover-img {
+            width: 420px;
+            height: 120px;
+
+            border: 3px solid #ffcc00;
+            border-radius: 10px;
+
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+
+            margin-bottom: 25px;
+            object-fit: fill;
+            transition: 0.3s;
+        }
+
+        .cover-img:hover {
+            transform: scale(1.03);
+        }
+
+        .left h1 {
+            font-size: 34px;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+
+        .left p {
+            font-size: 16px;
+            opacity: 0.9;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        /* RIGHT PANEL */
+        .right {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideRight 1s ease;
+        }
+
+        .login-box {
+            width: 80%;
+        }
+
+        .login-box h2 {
+            margin-bottom: 7px;
+            color: #111;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+            background: #f9f9f9;
+        }
+
+        input:focus {
+            border-color: #ffcc00;
+            box-shadow: 0 0 8px rgba(255,204,0,0.5);
+            background: #fff;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 14px;
+            color: #555;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: #ffcc00;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ffcc00;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LEFT PANEL -->
+    <div class="left">
+
+        <!-- IMAGE -->
+        <img 
+            src="{{ url_for('static', filename='image/cover.jpg') }}" 
+            class="cover-img"
+            alt="Company Cover"
+        >
+
+        <h1>Welcome to</h1>
+        <h1>Sport Clubs Company</h1>
+        <p>Access your performance dashboard and track your progress easily.</p>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+        <div class="login-box">
+            <h2>Login</h2>
+
+            <form method="POST">
+                <input type="email" name="email" placeholder="Enter Email" required>
+
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById("password");
+        const toggle = document.querySelector(".toggle-password");
+
+        if (password.type === "password") {
+            password.type = "text";
+            toggle.innerText = "Hide";
+        } else {
+            password.type = "password";
+            toggle.innerText = "Show";
+        }
+    }
+</script>
+
+</body>
+</html>
